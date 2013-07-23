@@ -82,7 +82,7 @@ public class TestClass {
 			ProducerData<String, String> data = new ProducerData<String, String>("test-topic", "test-message");
 			producer.send(data);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
