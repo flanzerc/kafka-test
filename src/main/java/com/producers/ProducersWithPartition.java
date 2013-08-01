@@ -3,47 +3,24 @@ package com.producers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import kafka.javaapi.producer.Producer;
 import kafka.javaapi.producer.ProducerData;
 import kafka.producer.ProducerConfig;
-import kafka.server.KafkaServer;
-
-import com.kafka.KafkaServerUtils;
-import com.zookeeper.ZookeeperUtils;
 
 public class ProducersWithPartition {
-
-	public static Properties getConfigProperties() {
-		Properties props = new Properties();
-
-		props.put("zk.connect", "localhost:2181");
-		props.put("serializer.class", "kafka.serializer.StringEncoder");
-
-		props.put("brokerid", "1");
-		props.put("port", "9092");
-		props.put("log.dir", KafkaServerUtils.kafkaLogDir.toString());
-
-		return props;
-	}
-
-	private static void prepare() throws IOException, InterruptedException {
-
-		ZookeeperUtils.startZooKeeper();
-
-		KafkaServer kafkaServer = KafkaServerUtils.getKafkaServerInstance(ProducersWithPartition.getConfigProperties());
-		kafkaServer.startup();
-	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		try {
-			ProducersWithPartition.prepare();
+			// ProducersWithPartition.prepare();
+			ProducerUtil.prepare();
 
-			ProducerConfig config = new ProducerConfig(ProducersWithPartition.getConfigProperties());
+			// ProducerConfig config = new
+			// ProducerConfig(ProducersWithPartition.getConfigProperties());
+			ProducerConfig config = new ProducerConfig(ProducerUtil.getConfigProperties());
 			Producer<String, String> producer = new Producer<String, String>(config);
 
 			List<String> messagesTopic1 = new ArrayList<String>();
