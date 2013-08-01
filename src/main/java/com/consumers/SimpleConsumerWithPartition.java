@@ -10,6 +10,10 @@ public class SimpleConsumerWithPartition {
 
 	private static void prepareConsumer(SimpleConsumer consumer, String topicName, int partition) {
 		long offset = 0;
+
+		System.out.println("kafka.api.OffsetRequest.LatestTime() = " + kafka.api.OffsetRequest.LatestTime());
+		System.out.println("kafka.api.OffsetRequest.EarliestTime() = " + kafka.api.OffsetRequest.EarliestTime());
+
 		while (true) {
 			FetchRequest fetchrequest = new FetchRequest(topicName, 0, offset, 1000000);
 			ByteBufferMessageSet messages = consumer.fetch(fetchrequest);
