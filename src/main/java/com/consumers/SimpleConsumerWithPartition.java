@@ -4,7 +4,6 @@ import kafka.api.FetchRequest;
 import kafka.javaapi.consumer.SimpleConsumer;
 import kafka.javaapi.message.ByteBufferMessageSet;
 import kafka.message.MessageAndOffset;
-import kafka.utils.Utils;
 
 public class SimpleConsumerWithPartition {
 
@@ -18,7 +17,8 @@ public class SimpleConsumerWithPartition {
 			FetchRequest fetchrequest = new FetchRequest(topicName, 0, offset, 1000000);
 			ByteBufferMessageSet messages = consumer.fetch(fetchrequest);
 			for (MessageAndOffset msg : messages) {
-				System.out.println("consumed: " + Utils.toString(msg.message().payload(), "UTF-8"));
+				// System.out.println("consumed: " +
+				// Utils.toString(msg.message().payload(), "UTF-8"));
 				offset = msg.offset();
 			}
 
@@ -41,7 +41,7 @@ public class SimpleConsumerWithPartition {
 		//
 		// }
 
-		SimpleConsumerWithPartition.prepareConsumer(consumer, "test-topic-message1", 1);
+		SimpleConsumerWithPartition.prepareConsumer(consumer, "test-topic-1", 1);
 
 	}
 

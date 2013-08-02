@@ -6,6 +6,7 @@ import java.util.Properties;
 import kafka.server.KafkaServer;
 
 import com.kafka.KafkaServerUtils;
+import com.utils.KafkaProperites;
 import com.zookeeper.ZookeeperUtils;
 
 public class ProducerUtil {
@@ -19,6 +20,10 @@ public class ProducerUtil {
 		props.put("brokerid", "1");
 		props.put("port", "9092");
 		props.put("log.dir", KafkaServerUtils.kafkaLogDir.toString());
+
+		props.put("log.cleanup.interval.mins", KafkaProperites.logCleanupInterval);
+		props.put("zk.read.num.retries", KafkaProperites.zkReadNumRetries);
+		props.put("socket.timeout.ms", KafkaProperites.socketTimeoutMs);
 
 		return props;
 	}
