@@ -21,7 +21,8 @@ public class ProducerUtil {
 		props.put("port", "9092");
 		props.put("log.dir", KafkaServerUtils.kafkaLogDir.toString());
 
-		props.put("log.cleanup.interval.mins", KafkaProperites.logCleanupInterval);
+		// props.put("log.cleanup.interval.mins",
+		// KafkaProperites.logCleanupInterval);
 		props.put("zk.read.num.retries", KafkaProperites.zkReadNumRetries);
 		props.put("socket.timeout.ms", KafkaProperites.socketTimeoutMs);
 

@@ -28,7 +28,7 @@ public class ProducersStream {
 
 			List<String> messagesTopic1 = new ArrayList<String>();
 			long count = 0;
-			while (count <= 2000000) {
+			while (count <= 3000000) {
 				// messagesTopic1.add("_for_topic1_" + count++);
 				// System.out.println("Count=" + count++);
 				producer.send(new ProducerData<String, String>("test-topic-1", "Message_" + count));
@@ -36,7 +36,7 @@ public class ProducersStream {
 
 			}
 
-			System.out.println("++++++++ Producer Completed ++++++");
+			System.out.println("++++++++ Producer Completed With Count ++++++" + count);
 
 			// System.out.println("==>>" + messagesTopic1.size());
 			// ProducerData<String, String> data1 = new ProducerData<String,
