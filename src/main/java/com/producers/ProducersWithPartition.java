@@ -16,11 +16,11 @@ public class ProducersWithPartition {
 	public static void main(String[] args) {
 		try {
 			// ProducersWithPartition.prepare();
-			ProducerUtil.prepare();
+			ServerUtil.startserver();
 
 			// ProducerConfig config = new
 			// ProducerConfig(ProducersWithPartition.getConfigProperties());
-			ProducerConfig config = new ProducerConfig(ProducerUtil.getConfigProperties());
+			ProducerConfig config = new ProducerConfig(ServerUtil.getConfigProperties());
 			Producer<String, String> producer = new Producer<String, String>(config);
 
 			List<String> messagesTopic1 = new ArrayList<String>();

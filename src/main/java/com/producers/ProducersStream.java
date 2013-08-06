@@ -1,8 +1,6 @@
 package com.producers;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import kafka.javaapi.producer.Producer;
 import kafka.javaapi.producer.ProducerData;
@@ -17,16 +15,15 @@ public class ProducersStream {
 
 		Producer<String, String> producer = null;
 		try {
-			ProducerUtil.prepare();
+			ServerUtil.startserver();
 			// ProducerConfig config = new
 			// ProducerConfig(ProducerUtil.getConfigProperties());
 			// Producer<String, String> producer = new Producer<String,
 			// String>(config);
 
-			ProducerConfig config = new ProducerConfig(ProducerUtil.getConfigProperties());
+			ProducerConfig config = new ProducerConfig(ServerUtil.getConfigProperties());
 			producer = new Producer<String, String>(config);
 
-			List<String> messagesTopic1 = new ArrayList<String>();
 			long count = 0;
 			while (count <= 3000000) {
 				// messagesTopic1.add("_for_topic1_" + count++);

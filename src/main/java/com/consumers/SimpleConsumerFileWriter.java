@@ -4,12 +4,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import kafka.api.FetchRequest;
 import kafka.javaapi.consumer.SimpleConsumer;
 import kafka.javaapi.message.ByteBufferMessageSet;
+import kafka.message.MessageAndOffset;
 
 import com.utils.Common;
 
@@ -37,9 +36,12 @@ public class SimpleConsumerFileWriter {
 			bufferedWriter = new BufferedWriter(writer);
 
 			SimpleConsumer consumer = new SimpleConsumer("127.0.0.1", 9092, 10000, 1024000);
-			FetchRequest fetchrequest = new FetchRequest(topicName, 0, 0, 1000000);
+			FetchRequest fetchrequest = new FetchRequest(topicName, 0, 0, Integer.MAX_VALUE);
 			ByteBufferMessageSet messageSet = consumer.fetch(fetchrequest);
-			List<FetchRequest> list = new ArrayList<FetchRequest>();
+
+			for (MessageAndOffset msgAndOffset : messageSet) {
+				long currentOffset = msgAndOffset.offset();
+			}
 
 			Common.printMessages(messageSet);
 
