@@ -10,6 +10,7 @@ import storm.kafka.SpoutConfig;
 import storm.kafka.StringScheme;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
+import backtype.storm.spout.SchemeAsMultiScheme;
 import backtype.storm.topology.TopologyBuilder;
 
 import com.bolts.WordConcatenator;
@@ -53,9 +54,9 @@ public class KafkaSpout {
 		hosts.add("localhost");
 
 		SpoutConfig spoutConfig = new SpoutConfig(StaticHosts.fromHostString(hosts, 1), "topic1", "/kafkastorm", "1");
-		spoutConfig.scheme = new StringScheme();
+		// spoutConfig.scheme = new StringScheme();
 
-		// spoutConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
+		spoutConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
 
 		spoutConfig.forceStartOffsetTime(-1);
 		// spoutConfig.zkServers = new ArrayList<String>() {

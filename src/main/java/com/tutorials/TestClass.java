@@ -5,13 +5,19 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
+import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
 import kafka.javaapi.producer.Producer;
 import kafka.javaapi.producer.ProducerData;
+import kafka.message.Message;
+import kafka.message.MessageAndMetadata;
 import kafka.producer.ProducerConfig;
 import kafka.server.KafkaConfig;
 import kafka.server.KafkaServer;
@@ -19,6 +25,8 @@ import kafka.server.KafkaServer;
 import org.apache.zookeeper.server.NIOServerCnxn;
 import org.apache.zookeeper.server.NIOServerCnxn.Factory;
 import org.apache.zookeeper.server.ZooKeeperServer;
+
+import com.google.common.collect.ImmutableMap;
 
 public class TestClass {
 
@@ -112,7 +120,6 @@ public class TestClass {
 			// create 4 partitions of the stream for topic “test”, to allow 4
 			// threads to consume
 
-			/*
 			Map<String, List<KafkaStream<Message>>> topicMessageStreams = consumerConnector.createMessageStreams(ImmutableMap.of(
 					"test-topic", 4));
 
@@ -130,7 +137,7 @@ public class TestClass {
 						}
 					}
 				});
-			}*/
+			}
 
 		} catch (IOException e) {
 
