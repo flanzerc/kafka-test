@@ -1,24 +1,19 @@
 package com.consumers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import kafka.api.FetchRequest;
 import kafka.consumer.ConsumerConfig;
-import kafka.consumer.ConsumerIterator;
-import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
 import kafka.javaapi.consumer.SimpleConsumer;
 import kafka.javaapi.message.ByteBufferMessageSet;
-import kafka.message.Message;
 import kafka.message.MessageAndOffset;
 import kafka.utils.Utils;
 
 import com.kafka.KafkaProperites;
 import com.producers.ServerUtil;
-import com.utils.Common;
 
 public class CustomConsumer extends Thread {
 
@@ -62,11 +57,18 @@ public class CustomConsumer extends Thread {
 	public void run() {
 		Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
 		topicCountMap.put(topic, new Integer(1));
+
+		/* 
+		 * The below lines of code is commented as it does not comply with the 0.8 version
+		 * works with the 0.7 version of Kafka
+		 *
 		Map<String, List<KafkaStream<Message>>> consumerMap = consumer.createMessageStreams(topicCountMap);
 		KafkaStream<Message> stream = consumerMap.get(topic).get(0);
 		ConsumerIterator<Message> it = stream.iterator();
 		while (it.hasNext()) {
 			System.out.println(Common.getMessage(it.next().message()));
 		}
+		
+		*/
 	}
 }

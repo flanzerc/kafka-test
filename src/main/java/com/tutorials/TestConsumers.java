@@ -1,19 +1,10 @@
 package com.tutorials;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
-import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
-import kafka.message.Message;
-import kafka.message.MessageAndMetadata;
-import scala.actors.threadpool.ExecutorService;
-import scala.actors.threadpool.Executors;
-
-import com.google.common.collect.ImmutableMap;
 
 public class TestConsumers {
 
@@ -32,6 +23,9 @@ public class TestConsumers {
 		ConsumerConnector consumerConnector = Consumer.createJavaConsumerConnector(consumerConfig);
 		// create 4 partitions of the stream for topic “test”, to allow 4
 		// threads to consume
+
+		/*
+		
 		Map<String, List<KafkaStream<Message>>> topicMessageStreams = consumerConnector
 				.createMessageStreams(ImmutableMap.of("test-topic", 4));
 
@@ -50,6 +44,8 @@ public class TestConsumers {
 				}
 			});
 		}
+		
+		*/
 
 	}
 
